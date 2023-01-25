@@ -9,4 +9,4 @@ Será construido um sistema gerenciador de tarefas, onde poderá ser cadastrada 
 
 Essa lista de tarefas terá um CRUD, ou seja, deverá permitir as operações de obter os registros, criar, salvar e deletar esses registros.
 
-Nessa implementação, a aplicação será do tipo MVC, exercitando os seguintes conceitos:
+
