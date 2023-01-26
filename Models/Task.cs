@@ -8,6 +8,6 @@ namespace trilha_net_ef_mvc_desafio.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public TaskStatusEnum Status { get; set; }
+        public TaskStatusEnum Status { get; set; } = TaskStatusEnum.Pending;
     }
 }
