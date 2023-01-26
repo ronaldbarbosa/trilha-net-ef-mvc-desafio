@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using trilha_net_ef_mvc_desafio.Context;
 
@@ -103,6 +104,34 @@ namespace trilha_net_ef_mvc_desafio.Controllers
             taskDb.Status = task.Status;
 
             _context.Tasks.Update(taskDb);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var task = _context.Tasks.Find(id);
+
+            if (task == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(task);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Models.Task task)
+        {
+            var taskDb = _context.Tasks.Find(task.Id);
+
+            if (taskDb == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            _context.Tasks.Remove(taskDb);
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));

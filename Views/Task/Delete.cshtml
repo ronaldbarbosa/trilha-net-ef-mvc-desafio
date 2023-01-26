@@ -1,0 +1,42 @@
+@model trilha_net_ef_mvc_desafio.Models.Task;
+
+@{
+    ViewData["Title"] = "Delete contact";
+}
+
+<h2>Delete Contact</h2>
+<p>Are you sure you want to delete this task? <strong style="color: red;">This operation cannot be undone.</strong></p>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(task => task.Title)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(task => task.Title)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(task => task.Description)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(task => task.Description)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(task => task.Date)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(task => task.Date)
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(task => task.Status)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(task => task.Status)
+        </dt>
+    </dl>
+</div>
+
+<form asp-action="Delete">
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
