@@ -9,6 +9,38 @@
     <a asp-action="Create" class="btn btn-outline-success">New Task</a>
 </p>
 
+<hr>
+
+<form asp-action="GetById" class="my-2 d-flex">
+    <label class="w-25" for="id">Search by Id:</label> 
+    <input class="w-50 form-control mx-1" type="number" min="0" name="id" required />
+    <input type="submit" value="Seach" class="btn btn-primary">
+</form>
+
+<form asp-action="GetByTitle" class="my-2 d-flex">
+    <label for="title" class="w-25">Search by Title:</label>
+    <input class="w-50 form-control mx-1" type="text" name="title" required />
+    <input type="submit" value="Seach" class="btn btn-primary">
+</form>
+
+<form asp-action="GetByDate" class="my-2 d-flex">
+    <label for="date" class="w-25">Search by Date:</label>
+    <input class="w-50 form-control mx-1" type="datetime-local" name="date" required/>
+    <input type="submit" value="Seach" class="btn btn-primary">
+</form>
+
+<form asp-action="GetByStatus" class="my-2 d-flex">
+    <label for="status" class="w-25">Search by Status:</label>
+    <select class="w-50 form-select mx-1" name="status">
+        <option value="Pending">Pending</option>
+        <option value="InProgress">In Progress</option>
+        <option value="Done">Done</option>
+    </select>
+    <input type="submit" value="Seach" class="btn btn-primary">
+</form>
+
+<hr>
+
 <table class="table">
     <thead>
         <tr>
@@ -52,13 +84,13 @@
                     @Html.DisplayFor(model => task.Date)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-light">Details</a>
-                    <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-light">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@task.Id" class="btn btn-light">Delete</a>
+                    <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-outline-primary mt-1">Details</a>
+                    <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-outline-primary mt-1">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@task.Id" class="btn btn-outline-danger mt-1">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back</a>
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back</a>

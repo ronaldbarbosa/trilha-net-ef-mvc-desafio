@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using trilha_net_ef_mvc_desafio.Context;
+using trilha_net_ef_mvc_desafio.Models.Enums;
 
 namespace trilha_net_ef_mvc_desafio.Controllers
 {
@@ -19,6 +19,46 @@ namespace trilha_net_ef_mvc_desafio.Controllers
             return View(tasks);
         }
 
+        public IActionResult GetById([FromForm] int id)
+        {
+            var task = _context.Tasks.Find(id);
+            if (task == null)
+            {
+                return RedirectToAction(nameof(NoValueReturned));
+            }
+            return View(task);
+        }
+
+        public IActionResult GetByTitle([FromForm] string title)
+        {
+            var tasks = _context.Tasks.Where(task => task.Title.Contains(title));
+            if (tasks == null || tasks.Count() == 0)
+            {
+                return RedirectToAction(nameof(NoValueReturned));
+            }
+            return View(tasks);
+        }
+
+        public IActionResult GetByDate([FromForm] DateTime date)
+        {
+            var tasks = _context.Tasks.Where(task => task.Date.Date == date.Date);
+            if (tasks == null || tasks.Count() == 0)
+            {
+                return RedirectToAction(nameof(NoValueReturned));
+            }
+            return View(tasks);
+        }
+
+        public IActionResult GetByStatus([FromForm] TaskStatusEnum status)
+        {
+            var tasks = _context.Tasks.Where(task => task.Status == status);
+            if (tasks == null || tasks.Count() == 0)
+            {
+                return RedirectToAction(nameof(NoValueReturned));
+            }
+            return View(tasks);
+        }
+
         public IActionResult Details(int id)
         {
             var task = _context.Tasks.Find(id);
@@ -31,6 +71,7 @@ namespace trilha_net_ef_mvc_desafio.Controllers
             return View(task);
         }
 
+        [HttpGet("Task/Create")]
         public IActionResult Create()
         {
             return View();
@@ -135,6 +176,12 @@ namespace trilha_net_ef_mvc_desafio.Controllers
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet("Task/NoValueReturned")]
+        public IActionResult NoValueReturned()
+        {
+            return View();
         }
     }
 }

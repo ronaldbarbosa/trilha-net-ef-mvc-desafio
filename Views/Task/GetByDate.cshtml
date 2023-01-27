@@ -1,0 +1,61 @@
+@model IEnumerable<trilha_net_ef_mvc_desafio.Models.Task>
+
+@{
+    ViewData["Title"] = "Search result(s)";
+}
+
+<h2>Search result(s)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => task.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => task.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => task.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => task.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => task.Date)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-light">Details</a>
+                    <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-light">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@task.Id" class="btn btn-light">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Back</a>
